@@ -82,9 +82,9 @@ Given a matrix of data X, finding the first p
 principal component means finding p direction 
 such that 
 
-$Var(Xa_1)= max\{Var(Xa)$ with $a \in \mathbb{R}^p$ and $||a||_2 = 1\}$ 
+$Var(Xa_1)= max\{Var(Xa)$ with $a \in R^p$ and $||a||_2 = 1\}$ 
 
-$Var(Xa_j) = max\{Var(Xa)$ with $a \in \mathbb{R}^p$ and $||a||_2 = 1\}$
+$Var(Xa_j) = max\{Var(Xa)$ with $a \in R^p$ and $||a||_2 = 1\}$
 such that $Cov(Xa_i,Xa_j) = 0$,  $\forall i<j$ and $\forall j: 2..p$.
 
 
