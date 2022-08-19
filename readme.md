@@ -84,7 +84,8 @@ such that
 
 $Var(Xa_1)= max(Var(Xa) \text{ with } a \in R^p \text{ and } ||a||_2 = 1)$ 
 
-$Var(Xa_j)= max(Var(Xa) \text{ with } a \in R^p \text{ and } ||a||_2 = 1) \text{ such that } Cov(Xa_i,Xa_j)=0 \text{ ,} \forall i<j \text{ and } \forall j: 2..p$.
+$Var(Xa_j)= max(Var(Xa) \text{ with } a \in R^p \text{ and } ||a||_2 = 1)$
+$\text{ such that } Cov(Xa_i,Xa_j)=0 \text{ , for all } i<j \text{ and } j: 2..p$.
 
 
 If we standardize the columns of X (i.e. column $x_i$
