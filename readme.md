@@ -80,11 +80,13 @@ trend during 2011-2012.
 # PCA Analysis
 Given a matrix of data X, finding the first p 
 principal component means finding p direction 
-such that <br>
+such that 
 
-- $Var(Xa_1)= max\{Var(Xa)$ with $a \in \mathbb{R}^p$ and $||a||_2 = 1\}$ <br>
-- $Var(Xa_j) = max\{Var(Xa)$ with $a \in \mathbb{R}^p$ and $||a||_2 = 1\}$ <br>
+$Var(Xa_1)= max\{Var(Xa)$ with $a \in \mathbb{R}^p$ and $||a||_2 = 1\}$ 
+
+$Var(Xa_j) = max\{Var(Xa)$ with $a \in \mathbb{R}^p$ and $||a||_2 = 1\}$
 such that $Cov(Xa_i,Xa_j) = 0$,  $\forall i<j$ and $\forall j: 2..p$.
+
 
 If we standardize the columns of X (i.e. column $x_i$
 becomes $z_i = \frac{x_i - mean(x_i)}{dev\_st(x_i)}$, $\forall i$) it is 
