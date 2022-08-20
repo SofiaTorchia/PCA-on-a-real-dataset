@@ -87,6 +87,7 @@ positive, showing that bike rental had a positive
 trend during 2011-2012.
 
 # PCA Analysis
+
 Given a matrix of data X, finding the first $p$ 
 principal components means finding $p$ directions $a_1,..,a_p$ 
 such that: <br>
