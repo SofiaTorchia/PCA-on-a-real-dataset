@@ -17,7 +17,7 @@ Its aim is data dimensionality reduction,
 minimizing the loss of 
 information as much as possible.
 
-# Dataset
+# Dataset overview
 In this project we analysed some data [^1] on bike 
 rental recorded in 2011-2012 by am american company (<em>Capital 
 Bikeshares</em>) downloaded from the 
