@@ -92,12 +92,12 @@ Given a matrix of data X, finding the first $p$
 principal components means finding $p$ directions $a_1,..,a_p$ 
 such that: <br>
 
-<p align="center">
-$Var(Xa_1)= max(Var(Xa) \text{ with } a \in R^p \text{ and } ||a||_2 = 1)$ 
 
-<p align="center">
-$Var(Xa_j)= max(Var(Xa) \text{ with } a \in R^p \text{ and } ||a||_2 = 1)$ <br>
-$\text{ such that } Cov(Xa_i,Xa_j)=0 \text{, for all } i < j \text{ and } j: 2..p$.
+$$Var(Xa_1)= max(Var(Xa) \text{ with } a \in R^p \text{ and } ||a||_2 = 1),$$ <br>
+
+
+$$Var(Xa_j)= max(Var(Xa) \text{ with } a \in R^p \text{ and } ||a||_2 = 1)$$ 
+$$\text{ such that } Cov(Xa_i,Xa_j)=0 \text{, for all } i < j \text{ and } j: 2..p$$
 
 
 If we standardize the columns of X (i.e. column $x_i$
@@ -155,8 +155,7 @@ Another way to study the feature importance for the first two
 principal components is the following. We know from the theory that $\forall i,k=1,...,p$
 
 <p align="center">
-$r(y_i,d_k) = \frac{cov(y_i,d_k)}{\sqrt{var(y_i)var(d_k)}} = v_{i,k} \sqrt{\lambda_i}$.
-
+$$r(y_i,d_k) = \frac{cov(y_i,d_k)}{\sqrt{var(y_i)var(d_k)}} = v_{i,k} \sqrt{\lambda_i}$$
 We can therefore study the vectors $r_i = [r(y_i,d_1),..,r(y_i,d_p)] = \sqrt{\lambda_i}v_i$
 as it is done in the next picture:
 
@@ -181,13 +180,12 @@ weighted by the eigenvalues $\lambda_1,...,\lambda_6$.
 
 More on details, this (simple) relevance is definded as
 
-<p align="center">
-$R(d_j) = \sum_{i=1}^{6}|v_i(j)|$,
+
+$$R(d_j) = \sum_{i=1}^{6}|v_i(j)|$$
  
 while the weighted relevance is given by: 
 
-<p align="center">
-$R_w(d_j)= \sum_{i=1}^{6}\lambda_i|v_i(j)|$
+$$R_w(d_j)= \sum_{i=1}^{6}\lambda_i|v_i(j)|$$
 
 It is fundamental to analyse both simple and weighted relevance. 
 Consider for exaple column $d_6$. The previous picture on the 
@@ -199,16 +197,34 @@ variance. If we wanted to only consider the first 5 eigenvalues
 we could surely affirm the $d_5$ is very much irrelevant in 
 comparison with the other columns.
 
-## Scatter plots for $y_1$ and $y_2$.
+## Scatter plots for $y_1$.
+The next picture puts in comparison $y_1$ 
+(on the y-axes) with all the 15 features of our 
+dataset.
+<p align="center">
+<img src="disp3.png" alt="disp" width="800"/>
+
+Starting with the last image on the bottom right, 
+we see the high correlation between the number of 
+total daily shares and $y_1$. This means that we can infer the behaviour of $y_1$ as the behaviour of $d_{15}$.
+The upper left picture basically represents the trend followed by $y_1$ (and so by $d_{15}$): there is a monthly and seasonal periodicity. As data are collected starting from January, it is clear how in winter bike sharings drop. This periodicity is confirmed by the second and the forth pictures. <br>
+Pictures 8-9-10 shows how the weather and bike-sharing are correlated.
 
 ## Anomaly detection
+We report here an example to show that PCA can be useful for anomaly detection.<br>
+The next picture is a scatter plot for $y_1$ versus $y_2$. Among all the point depicted in the figure, the red ones can be reguarded as outliers (or at least as less probable events). We analysed the red point corresponding to day 26. This point seems to have a lower value on the x-axes in comparison with the thicker mass of points near the origin. According to the last analysis, this should mean that its value for $d_{15}$ is also lower than the average.
+
 <p align="center">
 <img src="y1y2.png" alt="y1y2" width="600"/>
+
+We compared the 15 values for point 26 with the 15 mean values for day 1 to 50, in order to have seasonal values. The next picture shows that $d_{15}(26)$ is lower than the average, while $d_{8}(26),d_{9}(26),d_{11}(26),d_{12}(26)$ are much higher that average values. This means that day 26 had a particular bad weather that was likely the cause of a drop of bike rentals. 
 
 <p align="center">
 <img src="confronto_stagionale.png" alt="confronto_stagionale" width="500"/>
 
 
+# Final observations
+PCA is a fundamental tool for dataset with many feature, as looking at its principal components can be a good criterium to choose the features to be discarded. In our case one could also want to perform regression to predict daily total bike rentals. The first principal component $y_1$ is highly correlated to this feature, so it is fundamental to take its behaviour into account. Finally, PCA can ba a great help to detect and analyze.  anomalies
 
 <br/><br/>
 
