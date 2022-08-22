@@ -93,6 +93,12 @@ principal components means finding $p$ directions $a_1,..,a_p$
 such that: <br>
 
 
+$$Var(Xa_1)= max(Var(Xa) \text{ with } a \in R^p \text{ and } ||a||_2 = 1),$$ <br>
+
+$$Var(Xa_j)= max(Var(Xa) \text{ with } a \in R^p \text{ and } ||a||_2 = 1)$$ 
+
+$$\text{ such that } Cov(Xa_i,Xa_j)=0 \text{, for all } i < j \text{ and } j: 2..p$$
+
 
 If we standardize the columns of X (i.e. column $x_i$
 becomes $z_i = \frac{x_i - mean(x_i)}{dev\_st(x_i)}$, $\forall i$) it is 
