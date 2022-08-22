@@ -10,7 +10,7 @@ Joint work with <em>Emanuele Ferrelli</em> (email: [e.ferrelli@hotmail.com](mail
 
 ---
 
-Principal component analysis is a data 
+Principal Component Analysis is a data 
 simplification technique that works by applying 
 a linear transformation to the dataset features.
 Its aim is data dimensionality reduction, 
@@ -19,22 +19,19 @@ information as much as possible.
 
 # Dataset overview
 In this project we analysed some data [^1] on bike 
-rental recorded in 2011-2012 by am american company (<em>Capital 
-Bikeshares</em>) downloaded from the 
-following [link](https://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset). <br>
+rental collected during years 2011-2012 by an american company (<em>Capital 
+Bikeshares</em>), downloaded from the following [link](https://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset). <br>
 
-The dataset records the total daily number of 
-bikes rented by the american servicefor a total 731 days. 
-Along with daily shares, many other information 
-are taken into account: 
+The dataset reports the total daily number of 
+bikes rented by the american service for a total of 731 days. 
+Along with total daily shares, many other information are taken into account: 
 
 
-<img src="dataset.png" alt="dataset" width="800"/>
-
-<figcaption align = "center"><b>Dataset</b></figcaption>
+<img src="dataset.png" alt="dataset" width="900"/>
 
 
-Here is a brief description of the features names:  
+
+Here is a brief description of the features:
 
 	- instant: record index
 	- dteday : date
@@ -60,28 +57,23 @@ Here is a brief description of the features names:
 
 <br/>
 
-We discarded column 2 as it is redundant 
+We discarded column 2 as it is redundant, 
 and standardized the dataset columnwise.
 
 <br/>
 
 # Correlation analysis
-First of all we studied the correlation among the 
-features. Have a look at the next picture for the 
-a correlation matrix. 
+First of all we studied the correlation among 
+features. Have a look at the next picture for the  correlation matrix. 
 
 <p align="center">
-<img src="corr.png" alt="corr" width="500"/>
+<img src="corr.png" alt="corr" width="600"/>
 </p>
 
 
-A high positive correlation 
-in clearly visible between columns 14 and 15 and 
-between columns 9 and 10. On the contrary columns 
-8 and 15 show a negative correlation.
-
+A high positive correlation in clearly visible between columns 14 and 15 and between columns 9 and 10. On the contrary columns 8 and 15 show a negative correlation.<br>
 This confirms how bad weatear discourages bike 
-sharing.
+sharing. <br>
 The correlation coefficient $r(15,3)$ is also 
 positive, showing that bike rental had a positive 
 trend during 2011-2012.
@@ -100,21 +92,19 @@ $$Var(Xa_j)= max(Var(Xa) \text{ with } a \in R^p \text{ and } ||a||_2 = 1)$$
 $$\text{ such that } Cov(Xa_i,Xa_j)=0 \text{, for all } i < j \text{ and } j: 2..p$$
 
 
-If we standardize the columns of X (i.e. column $x_i$
-becomes $z_i = \frac{x_i - mean(x_i)}{dev\_st(x_i)}$, $\forall i$) it is 
-possible to prove that the "best" directions $a_1,..,a_p$ 
-(i.e. directions that satisfy the above formulas) are the first $p$ 
-eigenvectors $v_1,..,v_p$ of the correlation matrix $R$ of our data.<br>
-$y_1 = Xv_1,...,y_p=Xv_p$ are called the first $p$ principal components.<br>
-Note that $Var(Xv_j) = v_j^TRv_j = \lambda_j$, the $j$-th 
-eigenvalue of the matrix R.
+If we standardize the columns of X (i.e. column $x_i$ becomes $z_i = \frac{x_i - mean(x_i)}{dev\_st(x_i)}$, $\forall i$) it is possible to prove that the "best" directions $a_1,..,a_p$ (i.e. directions that satisfy the above formulas) are the first $p$ eigenvectors $v_1,..,v_p$ of the correlation matrix $R$ of our data.
 
+$y_1 := Xv_1,...,y_p:=Xv_p$ are called the first $p$ principal components.
 
-In our case, the next picture reports the 
-eigenvalues of the correlation matrix $R$.
+Note that $Var(Xv_j) = v_j^TRv_j = \lambda_j$, the $j$-th eigenvalue of the matrix R.
+
+<br/>
+
+The next picture reports the 
+eigenvalues of our correlation matrix $R$.
 
 <p align="center">
-<img src="autovalori.png" alt="autovalori" width="800"/>
+<img src="eigenvalues.png" alt="eigenvalues" width="900"/>
 
 As we can see, 90% of the total variance in 
 represented by the first 6 eigenvalues, while the 
@@ -132,54 +122,40 @@ $v_1 = [0.32, 0.27, 0.24, 0.23, -0.02, 0.02, 0.01, -0.11, 0.34, 0.34, 0.01, 0.14
 
 $v_2 = [0.08, -0.37, 0.31, -0.38, 0.03, 0.03, -0.09, -0.42, -0.11, -0.12, -0.54, 0.21, 0.15, 0.12, 0.15]$
 
-These two vectors provide a criterium to establish how 
+These two vectors provide a criterion to establish how 
 each feature counts for the first two principal 
 components. The next picture explains this concept 
 better.
 
 <p align="center">
-<img src="circ.png" alt="circ" width="600"/>
+<img src="circ.png" alt="circ" width="700"/>
 
-Here, each column $d_j$ of our dataset is represented as 
-a point in $\mathbb{R}^2$ given by $(v_1(j),v_2(j))$. 
-Points that lay near the unit circle and along one of the 
-two bisectors are considered as very significant for
-$y_1$ and $y_2$.
-The previous picture shows that columns $d_3,d_2,d_4$ are the 
+Here, each column $d_j$ of our dataset is represented as a point in $\mathbb{R}^2$ given by $(v_1(j),v_2(j))$. Points that lay near the unit circle and along one of the two bisectors are considered as very significant for both $y_1$ and $y_2$. The picture shows that columns $d_3,d_2,d_4$ are the 
 ones that count the most for both $y_1$ and $y_2$ at the
  same time.<br>
-$d_11$ only affects $y_2$, while $d_9$ and $d_10$ mostly count
-for $y_1$. Finally, $d_5,d_6,d_7$ are more or less irrelevant.<br>
+$d_{11}$ only affects $y_2$, while $d_9$ and $d_{10}$ mostly count for $y_1$. Finally, $d_5,d_6,d_7$ are more or less irrelevant.<br>
 
-Another way to study the feature importance for the first two
-principal components is the following. We know from the theory that $\forall i,k=1,...,p$
+Another way to study feature importance for the first two principal components is the following. We know from the theory that $\forall i,k=1,...,p$
 
 <p align="center">
 $$r(y_i,d_k) = \frac{cov(y_i,d_k)}{\sqrt{var(y_i)var(d_k)}} = v_{i,k} \sqrt{\lambda_i}$$
-We can therefore study the vectors $r_i = [r(y_i,d_1),..,r(y_i,d_p)] = \sqrt{\lambda_i}v_i$
-as it is done in the next picture:
+We can therefore examine the vectors $r_i = [r(y_i,d_1),..,r(y_i,d_p)] = \sqrt{\lambda_i}v_i$
+as it is done in the next pictures:
 
 <p align="center">
-<img src="corr3.png" alt="corr3" width="600"/>
+<img src="corr3.png" alt="corr3" width="800"/>
 
-This confirms the relation $r_i = \sqrt{\lambda_i}v_i$ for all $i$ and 
-tells us how each feature affects $y_1$ and $y_2$ weighting the importance
-by $\lambda_1$ and $\lambda_2$. 
+This confirms the relation $r_i = \sqrt{\lambda_i}v_i$ for all $i$ and tells us how each feature affects $y_1$ and $y_2$ weighting the feature relevance by $\lambda_1$ and $\lambda_2$. 
 
 ## Analysis of $y_1,..y_6$
 
-As we have seen before, the first two eigenvalues alone only 
-explain 40% of the total variance of the data. Therefore it can
-be significan to study $y_1,...,y_6$ together. <br>
-The next picture shows on the left the cumulated relevance of
-each feature for $y_1,...,y_6$. On the right this relevance is
-weighted by the eigenvalues $\lambda_1,...,\lambda_6$.
+As we have seen before, the first two eigenvalues alone only explain 40% of the total variance of the data. Therefore it can be significant to study $y_1,...,y_6$ together. <br>
+The next picture on the left shows the cumulated relevance of each feature w.r.t. $y_1,...,y_6$. On the right this relevance is weighted by the eigenvalues $\lambda_1,...,\lambda_6$.
 
 <p align="center">
-<img src="percentuali.png" alt="percentuali" width="650"/>
+<img src="relevance.png" alt="relevance" width="800"/>
 
-More on details, this (simple) relevance is definded as
-
+More on details, the (simple) relevance is defined as:
 
 $$R(d_j) = \sum_{i=1}^{6}|v_i(j)|$$
  
@@ -187,44 +163,36 @@ while the weighted relevance is given by:
 
 $$R_w(d_j)= \sum_{i=1}^{6}\lambda_i|v_i(j)|$$
 
-It is fundamental to analyse both simple and weighted relevance. 
-Consider for exaple column $d_6$. The previous picture on the 
-left shows that this feature could be reguarged as relevant as 
-its total relevance is not particularly low. However, if we look
-at the picture on the right we can see that its relevance is
-mostly based on $y_6$ that only contribute for 10% of the total
-variance. If we wanted to only consider the first 5 eigenvalues
-we could surely affirm the $d_5$ is very much irrelevant in 
-comparison with the other columns.
+It is fundamental to analyse both simple and weighted relevance. Consider for example column $d_6$. The previous picture on the left shows that this feature could be reguarged as important as its total relevance is not particularly low. However, if we look at the picture on the right we can see that its relevance is mostly based on $y_6$ that only contribute for 10% of the total
+variance. This means that if we wanted to consider only the first 5 eigenvalues we could surely affirm the $d_5$ is pretty much irrelevant.
 
 ## Scatter plots for $y_1$.
 The next picture puts in comparison $y_1$ 
 (on the y-axes) with all the 15 features of our 
 dataset.
 <p align="center">
-<img src="disp3.png" alt="disp" width="800"/>
+<img src="disp3.png" alt="disp" width="900"/>
 
 Starting with the last image on the bottom right, 
 we see the high correlation between the number of 
 total daily shares and $y_1$. This means that we can infer the behaviour of $y_1$ as the behaviour of $d_{15}$.
-The upper left picture basically represents the trend followed by $y_1$ (and so by $d_{15}$): there is a monthly and seasonal periodicity. As data are collected starting from January, it is clear how in winter bike sharings drop. This periodicity is confirmed by the second and the forth pictures. <br>
-Pictures 8-9-10 shows how the weather and bike-sharing are correlated.
+The upper left picture basically represents the trend followed by $y_1$ (and so by $d_{15}$): there is a monthly and seasonal periodicity. As data are collected starting from January, it is clear how in winter bike sharings drop. This periodicity is confirmed by the second and the forth pictures. Moreover, pictures 8-9-10 shows how the weather and bike-sharing are correlated: bad weather discourages bike rentals.
 
 ## Anomaly detection
 We report here an example to show that PCA can be useful for anomaly detection.<br>
-The next picture is a scatter plot for $y_1$ versus $y_2$. Among all the point depicted in the figure, the red ones can be reguarded as outliers (or at least as less probable events). We analysed the red point corresponding to day 26. This point seems to have a lower value on the x-axes in comparison with the thicker mass of points near the origin. According to the last analysis, this should mean that its value for $d_{15}$ is also lower than the average.
+The next picture is a scatter plot for $y_1$ and $y_2$. Among all the points depicted in the figure, the red ones can be reguarded as outliers (or at least as less probable events). We examined the red point corresponding to day 26. This point seems to have a lower value on the x-axes in comparison with the thicker mass of points near the origin. According to the last analysis, this should mean that its value for $d_{15}$ is also lower than the average.
 
 <p align="center">
 <img src="y1y2.png" alt="y1y2" width="600"/>
 
-We compared the 15 values for point 26 with the 15 mean values for day 1 to 50, in order to have seasonal values. The next picture shows that $d_{15}(26)$ is lower than the average, while $d_{8}(26),d_{9}(26),d_{11}(26),d_{12}(26)$ are much higher that average values. This means that day 26 had a particular bad weather that was likely the cause of a drop of bike rentals. 
+We compared the 15 feature values for point 26 with the 15 average values for days 1 to 50, in order to have seasonal average values. The next picture shows that $d_{15}(26)$ is lower than the average, while $d_{8}(26),d_{9}(26),d_{11}(26),d_{12}(26)$ are much higher that average values. This means that day 26 had a particular bad weather that was likely the cause of a drop of bike rentals. 
 
 <p align="center">
-<img src="confronto_stagionale.png" alt="confronto_stagionale" width="500"/>
+<img src="day26.png" alt="day26" width="500"/>
 
 
 # Final observations
-PCA is a fundamental tool for dataset with many feature, as looking at its principal components can be a good criterium to choose the features to be discarded. In our case one could also want to perform regression to predict daily total bike rentals. The first principal component $y_1$ is highly correlated to this feature, so it is fundamental to take its behaviour into account. Finally, PCA can ba a great help to detect and analyze.  anomalies
+PCA is a fundamental tool for datasets with many feature, as looking at its principal components can be a good criterion to choose the features to be discarded. In our case one could also want to perform regression to predict future total daily bike rentals. The first principal component $y_1$ is highly correlated to this column ($d_{15}$), so it is fundamental to take its behaviour into account. Finally, PCA can ba a great help to detect and analyze anomalies.
 
 <br/><br/>
 
